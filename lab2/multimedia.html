@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Caracas</title>
+    <style display:flex>
+        .fotografias {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .fotografias img {
+            width: 300px;
+            border-radius: 20px;
+        }
+        p:nth-child(1){color:green}
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Caracas</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="local.html">Localização</a>
+            <a href="multimedia.html">Multimédia</a>
+            <a href="info.html">Informação</a>
+        </nav>
+
+    </header>
+    <main>
+        <h2>Multimédia</h2>
+        <p>Conteudos Multimédia</p>
+        <p>
+            <a href="#fotografias">Fotografias</a>
+            <a href="#video">Vídeo</a>
+            <a href="#poema">Poema</a>
+        </p>
+        <section>
+            <h3 id="fotografias">Fotografias</h3>
+            <div class="fotografias">
+                <img src="images/primeira.jpg" alt="">
+                <img src="images/segunda.jpg" alt="">
+                <img src="images/terceira.jpg" alt="">
+                <img src="images/quarta.jpg" alt="">
+                <img src="images/quinta.jpg" alt="">
+                <img src="images/sexta.jpg" alt="">
+                <img src="images/setimas.jpg" alt="">
+                <img src="images/oitava.jpg" alt="">
+            </div>
+        </section>
+        <section>
+            <h3 id="video">Video</h3>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/xEtc8o6RGjY?si=l7ykH17nLy_V3sGy"
+                title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+
+            </iframe>
+        </section>
+        <section>
+            <h3 id="poema">Poema</h3>
+            <div>
+                <p>Entre montanhas ergues-te, altiva,</p>
+                <p>Caracas, cidade de luz e de vida.</p>
+                <p>No abraço verde da serra imponente,</p>
+                <p>Guardas segredos do povo ardente.</p>
+
+                <p>O Ávila vigia-te, sereno e gigante,</p>
+                <p>Enquanto a brisa sopra constante.</p>
+                <p>Ruas que dançam ao som do tambor,</p>
+                <p>Cores e vozes misturam-se em flor.</p>
+
+                <p>Tens céu de fogo ao cair da tarde,</p>
+                <p>Promessas de sol que ninguém retarde.</p>
+                <p>E à noite, o lume das estrelas cintila,</p>
+                <p>Beijando a cidade que nunca oscila.</p>
+
+                <p>Oh Caracas, terra de riso e dor,</p>
+                <p>No teu peito pulsa o amor.</p>
+                <p>Mesmo em tempos de vento e de mágoa,</p>
+                <p>Brilhas, eterna, com alma e água.</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>Caracas, 2025</p>
+    </footer>
+</body>
+
+</html>

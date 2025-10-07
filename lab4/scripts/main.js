@@ -15,3 +15,14 @@ const segundoParagrafo = document.querySelector('p.segundo');
   function textoNormal() {
     segundoParagrafo.textContent = 'Passa o rato pelo botão abaixo';
   }
+
+  const terceiroParagrafo = document.querySelector('p.terceiro');
+
+  function textoComCor() {
+    terceiroParagrafo.textContent = 'JavaScript';
+    terceiroParagrafo.style.color = 'blue'
+  }
+  function textoSemCor() {
+    terceiroParagrafo.textContent = 'Passa o rato pelo botão abaixo';
+    terceiroParagrafo.style.color = 'black'
+  }

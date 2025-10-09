@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            justify-content: center;
+            background: greenyellow;
+        }
+
+        section {
+            width: 200px;
+            background: rgb(255, 255, 255);
+            padding: 10px;
+            border-radius: 5px
+        }
+
+        #idPinta {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <section id="idPassa">
+            <p>1. Passa por aqui!</p>
+            <script>
+                const frase = document.querySelector("#idPassa p")
+
+                function mudarFrase() {
+                    frase.textContent = "Obrigado por passares!"
+                }
+
+                function reporFrase() {
+                    frase.textContent = "1. Passa por aqui!"
+                }
+
+                frase.onmouseover = mudarFrase;
+                frase.onmouseout = reporFrase;
+            </script>
+
+
+        </section>
+
+        <section id="idPinta">
+
+            <p>2. Pinta-me!</p>
+            <button onclick="vermelho()">Red</button>
+            <button onclick="verde()">Green</button>
+            <button onclick="azul()">Blue</button>
+
+            <script>
+                const fraseCor = document.querySelector("#idPinta p")
+
+                function vermelho() {
+                    fraseCor.style.color = 'red';
+                }
+                function verde() {
+                    fraseCor.style.color = 'green';
+                }
+                function azul() {
+                    fraseCor.style.color = 'blue';
+                }
+
+            </script>
+
+
+        </section>
+        <section id="escrever">
+
+            <label for="input">3. Experimenta escrever...</label>
+            <input id="input" type="text">
+
+            <script>
+
+                //A: variáveis
+
+                const input = document.querySelector("#escrever input")
+                const cores = ['red', 'green', 'blue']
+                let i = 0
+
+                //B: Event listeners
+
+                function colorir() {
+                    input.style.backgroundColor = cores[i]
+                    i++;
+                    if (i >= 3) i = 0
+                }
+
+                input.addEventListener("input", colorir)
+
+
+
+            </script>
+
+
+
+
+
+        </section>
+
+        <section id="background">
+
+            <input type="text">
+            <button>muda background</button>
+
+            <script>
+
+                const texto = document.querySelector("#background input")
+                const botao = document.querySelector("#background button")
+
+                function mudaBackground() {
+                    document.querySelector("body").style.background = texto.value
+                }
+
+                botao.onclick = mudaBackground;
+
+            </script>
+
+
+
+        </section>
+
+
+    </main>
+
+</body>
+
+</html>

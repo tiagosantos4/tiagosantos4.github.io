@@ -74,6 +74,7 @@ function atualizaCesto() {
 
 
 function carregarProdutos(listaProdutos) {
+    seccaoProdutos.innerHTML = '';
     listaProdutos.forEach(produto => {
         const artigo = criarProduto(produto);
         seccaoProdutos.appendChild(artigo);
@@ -82,6 +83,10 @@ function carregarProdutos(listaProdutos) {
 
 document.addEventListener('DOMContentLoaded', () => {
     const filtroCategoria = document.querySelector('#filtroCategoria');
+    const ordenarPreco = document.querySelector('#ordenarPreco');
+    const inputPesquisa = document.querySelector('#inputPesquisa');
+
+    let produtos = [];
 
     fetch("https://deisishop.pythonanywhere.com/categories")
         .then(response => response.json())
@@ -99,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
     fetch("https://deisishop.pythonanywhere.com/products")
         .then(response => response.json())
         .then(data => {
-            console.log('Produtos:', data);
-            carregarProdutos(data);
+            produtos = data;
+            carregarProdutos(produtos);
         })
-        .catch(error => console.error('Erro:', error))
+        .catch(error => console.error('Erro:', error));
 
     filtroCategoria.addEventListener('change', () => {
         const categoriaSelecionada = filtroCategoria.value;
@@ -121,32 +126,36 @@ document.addEventListener('DOMContentLoaded', () => {
             .catch(error => console.error('Erro:', error));
     });
 
-    ordenarPreco.addEventListener('change', () => {
+    function aplicarFiltros() {
+        const categoriaSelecionada = filtroCategoria.value;
+        const termoPesquisa = inputPesquisa.value.trim().toLowerCase();
+        const ordem = ordenarPreco.value;
 
-        const produtosArtigos = seccaoProdutos.querySelectorAll('article');
+        let produtosFiltrados = produtos; 
 
+        if (categoriaSelecionada !== "") {
+            produtosFiltrados = produtosFiltrados.filter(produto => produto.category === categoriaSelecionada);
+        }
 
-        const produtosArray = [...produtosArtigos];
+        if (termoPesquisa !== "") {
+            produtosFiltrados = produtosFiltrados.filter(produto =>
+                produto.title.toLowerCase().includes(termoPesquisa)
+            );
+        }
 
+        if (ordem === 'asc') {
+            produtosFiltrados.sort((a, b) => a.price - b.price);
+        } else if (ordem === 'desc') {
+            produtosFiltrados.sort((a, b) => b.price - a.price);
+        }
 
-        produtosArray.sort((a, b) => {
-            const precoA = a.querySelector('.preco');
-            const precoB = b.querySelector('.preco');
+        carregarProdutos(produtosFiltrados);
+    }
 
-            if (ordenarPreco.value === 'asc') {
-                return precoA - precoB;
-            }
-            if (ordenarPreco.value === 'desc') {
-                return precoB - precoA;
-            }
-            return 0;
-        });
-
-
-        seccaoProdutos.innerHTML = '';
-        produtosArray.forEach(produto => seccaoProdutos.append(produto));
-    });
-
+    filtroCategoria.addEventListener('change', aplicarFiltros);
+    ordenarPreco.addEventListener('change', aplicarFiltros);
+    inputPesquisa.addEventListener('input', aplicarFiltros);
 
     atualizaCesto();
 });
+
